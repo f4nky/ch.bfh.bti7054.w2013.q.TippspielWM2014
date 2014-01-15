@@ -1,0 +1,23 @@
+DROP TABLE IF EXISTS generalBet;
+CREATE TABLE generalBet (
+	gb_id INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
+	player_id INTEGER UNSIGNED NOT NULL,
+	worldChampion_id VARCHAR(2),
+	topScorer VARCHAR(100),
+	numberOfGoals INTEGER UNSIGNED,
+	numberOfYellowCards INTEGER UNSIGNED,
+	numberOfRedCards INTEGER UNSIGNED,
+	created TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
+	updated TIMESTAMP NULL DEFAULT NULL,
+	CONSTRAINT pk_gb_id PRIMARY KEY(gb_id),
+	CONSTRAINT uk_generalBet_player_id UNIQUE(player_id),
+	CONSTRAINT fk_generalBet_player_id FOREIGN KEY(player_id)
+		REFERENCES player(p_id)
+			ON DELETE RESTRICT
+			ON UPDATE CASCADE,
+	CONSTRAINT fk_generalBet_worldChampion_id FOREIGN KEY(worldChampion_id)
+		REFERENCES team(t_id)
+			ON DELETE RESTRICT
+			ON UPDATE CASCADE
+)
+ENGINE=InnoDB DEFAULT CHARSET=utf8;

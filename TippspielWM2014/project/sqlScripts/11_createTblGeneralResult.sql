@@ -1,0 +1,17 @@
+DROP TABLE IF EXISTS generalResult;
+CREATE TABLE generalResult (
+	gr_id INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
+	worldChampion_id VARCHAR(2),
+	topScorer VARCHAR(100),
+	numberOfGoals INTEGER UNSIGNED,
+	numberOfYellowCards INTEGER UNSIGNED,
+	numberOfRedCards INTEGER UNSIGNED,
+	created TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
+	updated TIMESTAMP NULL DEFAULT NULL,
+	CONSTRAINT pk_gr_id PRIMARY KEY(gr_id),
+	CONSTRAINT fk_generalResult_worldChampion_id FOREIGN KEY(worldChampion_id)
+		REFERENCES team(t_id)
+			ON DELETE RESTRICT
+			ON UPDATE CASCADE
+)
+ENGINE=InnoDB DEFAULT CHARSET=utf8;
